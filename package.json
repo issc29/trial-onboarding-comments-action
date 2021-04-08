@@ -12,7 +12,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "actions-api-functions": "git+https://github.com/issc29/trial-onboarding-comments-action.git",
+    "actions-api-functions": "git+https://github.com/issc29/actions-api-functions.git",
     "dedent": "^0.7.0"
   }
 }
