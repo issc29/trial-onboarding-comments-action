@@ -29,6 +29,7 @@ async function run() {
   try {
     const isPocLinkFound = /.*(https:\/\/github\.lightning\.force\.com.*Proof_of_Concept.*view).*/.test(body)
     const isGitHubOrgFound = /.*GitHub Organization\(s\)\*\* - `(.*)`.*/.test(body)
+    const githubOrg = (isGitHubOrgFound) ? title.match(/\[GHAS (.*) PoC\]:(.*),.*/)[2] : ''
 
     const regionLabels = ['region-emea', 'corporate-se-emea', 'region-apac', 'corporate-se-apac',
       'region-east', 'region-west','region-central', 'corporate-se-amer', 'region-pubsec']
@@ -50,9 +51,9 @@ async function run() {
     var comment = ''
     comment += `${contactUsers} :point_up: awaiting GHAS POC access to be enabled\n\n`
     comment += (isPocLinkFound) ? ':white_check_mark: POC Link Found\n' : ':x: POC Not Link Found\n'
-    comment += (isGitHubOrgFound) ? ':white_check_mark: Organization Found\n' : ':x: Organization Not Found\n'
+    comment += (isGitHubOrgFound) ? `:white_check_mark: Organization(s) to be enabled: ${githubOrg}\n` : ':x: Could not find Organization(s) to be enabled\n'
     comment += (!type == '') ? `:white_check_mark: Type: ${type}\n` : ':x: Type Not Found\n'
-    comment += (!region == '') ? `:white_check_mark: Region Label ${region}\n` : ':x: Region Label Not Found\n'
+    comment += (!region == '') ? `:white_check_mark: Region Label: ${region}\n` : ':x: Region Label Not Found\n'
 
 
 
