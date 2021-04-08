@@ -4,8 +4,8 @@ inputs:
   github-token:  # id of input
     description: 'Token to use'
     required: true
-  onboarding-comment:  
-    description: 'Comment for onboarding'
+  contact-users:  
+    description: 'Users to be contacted when onbaording'
     required: true
 runs:
   using: 'node12'
