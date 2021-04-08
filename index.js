@@ -29,7 +29,7 @@ async function run() {
   try {
     const isPocLinkFound = /.*(https:\/\/github\.lightning\.force\.com.*Proof_of_Concept.*view).*/.test(body)
     const isGitHubOrgFound = /.*GitHub Organization\(s\)\*\* - `(.*)`.*/.test(body)
-    const githubOrg = (isGitHubOrgFound) ? title.match(/\[GHAS (.*) PoC\]:(.*),.*/)[2] : ''
+    const githubOrg = (isGitHubOrgFound) ? body.match(/.*GitHub Organization\(s\)\*\* - `(.*)`.*/)[1] : ''
 
     const regionLabels = ['region-emea', 'corporate-se-emea', 'region-apac', 'corporate-se-apac',
       'region-east', 'region-west','region-central', 'corporate-se-amer', 'region-pubsec']
