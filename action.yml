@@ -1,0 +1,24 @@
+name: 'Trial Onboarding Comments Action'
+description: 'Creates a process around to enable early-access programs for trials'
+inputs:
+  github-token:  # id of input
+    description: 'Token to use'
+    required: true
+  approvedLabelID:  
+    description: 'Label ID for security-center-approved label'
+    required: true
+  approvedIssueID:
+    description: 'Issue ID to record approvals'
+    required: true
+  requestedLabelID:  
+    description: 'Label ID for security-center-requested label'
+    required: true
+  feedback:
+    description: 'Link to Feedback'
+    required: true
+  approvedUsers:
+    description: 'Comma seperated list of users that can approve'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
