@@ -151,6 +151,7 @@ module.exports = class functions {
         ... on ProjectCard{
           content{
             ... on Issue{
+              id,
               repository {
                 name,
                 owner {
