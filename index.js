@@ -58,8 +58,8 @@ async function run() {
     comment += `${contactUsers} :point_up: awaiting GHAS POC access to be enabled\n\n`
     comment += (isPocLinkFound) ? ':white_check_mark: POC Link Found\n' : ':x: POC Not Link Found\n'
     comment += (isGitHubOrgFound) ? `:white_check_mark: Organization(s) to be enabled: ${githubOrg}\n` : ':x: Could not find Organization(s) to be enabled\n'
-    comment += (!type == '') ? `:white_check_mark: Type: ${type}\n` : ':x: Type Not Found\n'
-    comment += (!region == '') ? `:white_check_mark: Region Label: ${region}\n` : ':x: Region Label Not Found\n'
+    comment += (!type == '') ? `:white_check_mark: Type: **${type}**\n` : ':x: Type Not Found\n'
+    comment += (!region == '') ? `:white_check_mark: Region Label: **${region}**\n` : ':x: Region Label Not Found\n'
 
 
 
