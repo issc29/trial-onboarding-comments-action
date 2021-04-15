@@ -5,7 +5,7 @@ inputs:
     description: 'Token to use'
     required: true
   contact-users:  
-    description: 'Users to be contacted when onbaording'
+    description: 'Users to be contacted when onboarding'
     required: true
 runs:
   using: 'node12'

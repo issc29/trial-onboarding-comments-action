@@ -28,8 +28,14 @@ async function run() {
 
   try {
     const isPocLinkFound = /.*(https:\/\/github\.lightning\.force\.com.*Proof_of_Concept.*view).*/.test(body)
-    const isGitHubOrgFound = /.*GitHub Organization\(s\)\*\* - `(.*)`.*/.test(body)
-    const githubOrg = (isGitHubOrgFound) ? body.match(/.*GitHub Organization\(s\)\*\* - `(.*)`.*/)[1] : ''
+    var isGitHubOrgFound = false
+    var githubOrg = ''
+
+    const reGitHubOrg = /.*GitHub Organization\(s\)\*\* -(.*)/
+    if(reGitHubOrg.test(body)) {
+      githubOrg = body.match(/.*GitHub Organization\(s\)\*\* -(.*)/)[1].trim()
+      isGitHubOrgFound = (githubOrg) ? true : false
+    }
 
     const regionLabels = ['region-emea', 'corporate-se-emea', 'region-apac', 'corporate-se-apac',
       'region-east', 'region-west','region-central', 'corporate-se-amer', 'region-pubsec']
