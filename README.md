@@ -2,6 +2,8 @@
 
 Usage: 
 
+```
 with:
   github-token: ${GITHUB_TOKEN}
   contact-users: '@issc29'
+```
