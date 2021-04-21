@@ -30,13 +30,13 @@ async function run() {
 
     var POCObjectLink = ''
     try {
-      POCObjectLink = this.function.getPOCObjectLink(body)
+      POCObjectLink = functions.getPOCObjectLink(body)
     } catch(error) {
     }
 
     var githubOrg = ''
     try {
-      githubOrg = this.function.getGitHubOrgs(body)
+      githubOrg = functions.getGitHubOrgs(body)
     } catch(error) {
     }
 
@@ -45,19 +45,19 @@ async function run() {
 
     var type = ''
     try {
-      type = this.function.getType(labels)
+      type = functions.getType(labels)
     } catch(error) {
     }
 
     var region = ''
     try {
-      region = this.function.getRegion(labels, regionLabels)
+      region = functions.getRegion(labels, regionLabels)
     } catch(error) {
     }
 
     var companyName = ''
     try {
-      companyName = this.function.getCompanyName(title)
+      companyName = functions.getCompanyName(title)
     } catch(error) {
     }
 
@@ -70,7 +70,7 @@ async function run() {
 
 
     var comment = ''
-    comment += `${contactUsers} :point_up: awaiting GHAS POC access to be enabled\n\n`
+    comment += `${contactUsers} awaiting GHAS POC access to be enabled\n\n`
     comment += (POCObjectLink) ? ':white_check_mark: POC Link Found\n' : ':x: POC Not Link Found\n'
     comment += (companyName) ? `:white_check_mark: Company Name:  **${companyName}**\n` : ':x: Company Name Not Found. Issue title must be formatted as: `[GHAS * Trial]: Company Name, Date`\n'
     comment += (githubOrg) ? `:white_check_mark: Organization(s) to be enabled: ${githubOrg}\n` : ':x: Could not find Organization(s) to be enabled\n'
