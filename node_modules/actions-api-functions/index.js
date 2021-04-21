@@ -412,7 +412,7 @@ module.exports = class functions {
     if(reGitHubOrg.test(body)) {
       var githubOrg = body.match(/.*GitHub Organization\(s\)\*\* -(.*)/)[1].trim()
       if(githubOrg != '`replace_with_GitHub_org`' && githubOrg != '') {
-        return githubOrg
+        return githubOrg.trim()
       }
     }
     throw new Error(':wave: Trial Error: Could not detect POC Organization to enable!')
@@ -421,7 +421,7 @@ module.exports = class functions {
   getCompanyName(title) {
     try {
       var companyName = title.match(/\[GHAS .* Trial\]:(.*),.*/)[1]
-      return companyName
+      return companyName.trim()
     } catch (e) {
       throw new Error(':wave: Trial Error: Could not detect the Company Name!')
     }

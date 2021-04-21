@@ -74,7 +74,7 @@ async function run() {
     comment += (POCObjectLink) ? ':white_check_mark: POC Link Found\n' : ':x: POC Not Link Found\n'
     comment += (companyName) ? `:white_check_mark: Company Name:  **${companyName}**\n` : ':x: Company Name Not Found. Issue title must be formatted as: `[GHAS * Trial]: Company Name, Date`\n'
     comment += (githubOrg) ? `:white_check_mark: Organization(s) to be enabled: ${githubOrg}\n` : ':x: Could not find Organization(s) to be enabled\n'
-    comment += (type) ? `:white_check_mark: Type: **${type}**\n` : ':x: Type Not Found\n'
+    comment += (type) ? `:white_check_mark: Type: **${type}**\n` : ':x: Type Not Found. Issue should have a `ghec` or `ghes` label.\n'
     comment += (region) ? `:white_check_mark: Region Label: **${region}**\n` : ':x: Region Label Not Found\n'
     comment += (foundAllCriteria) ? `` : `\nFill in the required information by editing the issue body :point_up:`
 
