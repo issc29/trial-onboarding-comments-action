@@ -54,9 +54,18 @@ async function run() {
       }
     }
 
+    var isCompanyNameFound = false
+    var companyName = ''
+    const reGitHubCompany = /\[GHAS .* Trial\]:(.*),.*/
+    if(reGitHubCompany.test(title)) {
+      companyName = title.match(reGitHubCompany)[1]
+      isCompanyNameFound = (companyName) ? true : false
+    }
+
     var comment = ''
     comment += `${contactUsers} :point_up: awaiting GHAS POC access to be enabled\n\n`
     comment += (isPocLinkFound) ? ':white_check_mark: POC Link Found\n' : ':x: POC Not Link Found\n'
+    comment += (isCompanyNameFound) ? `:white_check_mark: Company Name:  **${companyName}**\n` : ':x: Company Name Not Found. Title of Issue must be formatted as: `[GHAS * Trial]: Company Name, Date`\n'
     comment += (isGitHubOrgFound) ? `:white_check_mark: Organization(s) to be enabled: ${githubOrg}\n` : ':x: Could not find Organization(s) to be enabled\n'
     comment += (!type == '') ? `:white_check_mark: Type: **${type}**\n` : ':x: Type Not Found\n'
     comment += (!region == '') ? `:white_check_mark: Region Label: **${region}**\n` : ':x: Region Label Not Found\n'
