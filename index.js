@@ -1,11 +1,13 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const dedent = require('dedent');
+const fs = require('fs');
+const yaml = require('js-yaml');
 const myToken = core.getInput('github-token');
 const octokit = github.getOctokit(myToken)
 const payload = github.context.payload
 const cardID = payload.project_card.node_id
-const contactUsers = core.getInput('contact-users');
+
+
 
 
 const functionsLib = require('actions-api-functions');
@@ -24,7 +26,14 @@ async function run() {
   const body = issueInfo.body
   const labels = issueInfo.labels.nodes
   console.log(issueID)
-  
+
+  var regionNotificationSettings
+  try {
+    let settingsContents = fs.readFileSync('./.github/settings/trial-onboarding-comments-settings.yml');
+    let settings = yaml.safeLoad(settingsContents);
+    regionNotificationSettings = data['region-notifications']
+  } catch(error) {
+  }
 
   try {
 
@@ -67,7 +76,11 @@ async function run() {
     }
 
 
-
+    var contactUsers = core.getInput('contact-users');
+    if(region) {
+      contactUsers = getContactUsersString(region, regionNotificationSettings, contactUsers)
+    }
+    
 
     var comment = ''
     comment += `${contactUsers} awaiting GHAS POC access to be enabled\n\n`
@@ -85,4 +98,23 @@ async function run() {
     console.log(e)
   }
 
+}
+
+
+function getContactUsersString(region, regionNotificationSettings, defaultContact){
+  try {
+    var regionUsers = regionNotificationSettings[region]
+    var regionUsersList = regionUsers.split(",").map(function(item) {
+      return item.trim();
+    });
+
+    contactUsers = ''
+    for (const regionUser of regionUsersList){
+      contactUsers += `@${regionUser} `
+    }
+    return contactUsers
+  } catch (e) {
+    console.log(e)
+    return defaultContact
+  }
 }

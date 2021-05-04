@@ -13,6 +13,7 @@
     "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
     "actions-api-functions": "git+https://github.com/issc29/actions-api-functions.git",
-    "dedent": "^0.7.0"
+    "dedent": "^0.7.0",
+    "js-yaml": "^4.1.0"
   }
 }
