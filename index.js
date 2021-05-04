@@ -31,7 +31,9 @@ async function run() {
   try {
     let settingsContents = fs.readFileSync('./.github/settings/trial-onboarding-comments-settings.yml');
     let settings = yaml.safeLoad(settingsContents);
-    regionNotificationSettings = data['region-notifications']
+    console.log(settings)
+    regionNotificationSettings = settings['region-notifications']
+    console.log(regionNotificationSettings)
   } catch(error) {
   }
 
