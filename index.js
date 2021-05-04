@@ -35,6 +35,7 @@ async function run() {
     regionNotificationSettings = settings['region-notifications']
     console.log(regionNotificationSettings)
   } catch(error) {
+    console.log(error.message)
   }
 
   try {
