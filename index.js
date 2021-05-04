@@ -29,6 +29,8 @@ async function run() {
 
   var regionNotificationSettings
   try {
+    console.log(__dirname)
+    console.log(fs.readdirSync("."))
     let settingsContents = fs.readFileSync('./.github/settings/trial-onboarding-comments-settings.yml');
     let settings = yaml.safeLoad(settingsContents);
     console.log(settings)
