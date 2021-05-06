@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const fs = require('fs');
 const yaml = require('js-yaml');
 const myToken = core.getInput('github-token');
 const octokit = github.getOctokit(myToken)
@@ -29,12 +28,7 @@ async function run() {
 
   var regionNotificationSettings
   try {
-    console.log(__dirname)
-    console.log(fs.readdirSync("."))
-    let settingsContents = fs.readFileSync('./.github/settings/trial-onboarding-comments-settings.yml');
-    let settings = yaml.safeLoad(settingsContents);
-    console.log(settings)
-    regionNotificationSettings = settings['region-notifications']
+    regionNotificationSettings = yaml.safeLoad(core.getInput('region-notifications'));
     console.log(regionNotificationSettings)
   } catch(error) {
     console.log(error.message)

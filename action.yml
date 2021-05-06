@@ -7,6 +7,10 @@ inputs:
   contact-users:  
     description: 'Users to be contacted when onboarding'
     required: true
+  region-notifications:
+    description: 'Users to be contacted per region'
+    required: true
+
 runs:
   using: 'node12'
   main: 'index.js'
