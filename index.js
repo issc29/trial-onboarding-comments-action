@@ -28,7 +28,7 @@ async function run() {
 
   var regionNotificationSettings
   try {
-    regionNotificationSettings = yaml.safeLoad(core.getInput('region-notifications'));
+    regionNotificationSettings = yaml.load(core.getInput('region-notifications'));
     console.log(regionNotificationSettings)
   } catch(error) {
     console.log(error.message)
