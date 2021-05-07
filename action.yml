@@ -4,9 +4,13 @@ inputs:
   github-token:  # id of input
     description: 'Token to use'
     required: true
-  contact-users:  
-    description: 'Users to be contacted when onboarding'
+  default-contacts:  
+    description: 'Users to be contacted when no region label is specified'
     required: true
+  region-notifications:
+    description: 'Users to be contacted per region'
+    required: true
+
 runs:
   using: 'node12'
   main: 'index.js'
