@@ -29,7 +29,7 @@ async function run() {
   var regionNotificationSettings
   try {
     regionNotificationSettings = yaml.load(core.getInput('region-notifications'));
-    console.log(regionNotificationSettings)
+    //console.log(regionNotificationSettings)
   } catch(error) {
     console.log(error.message)
   }
@@ -75,10 +75,12 @@ async function run() {
     }
 
 
-    var contactUsers = core.getInput('contact-users');
+    var contactUsers = getContactUsersString(core.getInput('default-contacts'))
+    var regionUsers = ''
     if(region) {
-      contactUsers = getContactUsersString(region, regionNotificationSettings, contactUsers)
+      regionUsers = getContactUsersBasedOffRegion(region, regionNotificationSettings)
     }
+    contactUsers = (regionUsers) ? regionUsers : contactUsers
     
 
     var comment = ''
@@ -99,21 +101,30 @@ async function run() {
 
 }
 
+function convertStringToList(string){
+  var list = string.split(",").map(function(item) {
+    return item.trim();
+  });
+  return list
+}
 
-function getContactUsersString(region, regionNotificationSettings, defaultContact){
+function getContactUsersString(users) {
+  var UsersList = convertStringToList(users)
+  var contactUsers = ''
+    for (const user of UsersList) {
+      contactUsers += `@${user} `
+    }
+    return contactUsers
+}
+
+
+function getContactUsersBasedOffRegion(region, regionNotificationSettings){
   try {
     var regionUsers = regionNotificationSettings[region]
-    var regionUsersList = regionUsers.split(",").map(function(item) {
-      return item.trim();
-    });
-
-    contactUsers = ''
-    for (const regionUser of regionUsersList){
-      contactUsers += `@${regionUser} `
-    }
+    var contactUsers = getContactUsersString(regionUsers)
     return contactUsers
   } catch (e) {
     console.log(e)
-    return defaultContact
+    return ''
   }
 }
