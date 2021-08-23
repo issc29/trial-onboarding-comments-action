@@ -48,8 +48,8 @@ async function run() {
     } catch(error) {
     }
 
-    const regionLabels = ['region-emea', 'corporate-se-emea', 'region-apac', 'corporate-se-apac',
-      'region-east', 'region-west','region-central', 'corporate-se-amer', 'region-pubsec']
+    const regionLabels = ['region-emea', 'region-corporate-emea', 'region-apac', 'region-corporate-apac',
+      'region-east', 'region-west','region-central', 'region-corporate-amer', 'region-pubsec', 'region-semea', 'region-nemea', 'region-latam', 'region-canada']
 
     var type = ''
     try {
